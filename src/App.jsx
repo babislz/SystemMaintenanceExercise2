@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from './components/Card';
-import { ApiCard } from './components/ApiCard';
+import { Card } from './components/Card.jsx';
+import { ApiCard } from './components/ApiCard.jsx';
 import produtos from './constants/produtos.json';
 import { api } from "./api/rmApi";
 import style from './App.module.css';
 import MapDisplay from './components/Map';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+
 
 function App() {
   const [show, setShow] = useState("prod");
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [name, setName] = useState("");
+  const dataGraph = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,26 +39,29 @@ function App() {
         <button onClick={() => setShow("prod")}>Produtos</button>
         <button onClick={() => setShow("api")}>API</button>
         <button onClick={() => setShow("map")}>Mapa</button>
+        <button onClick={() => setShow("graph")}>Gráficos</button>
       </div>
       <div className={style.wrapPage}>
         <h1>Exercícios de manutenção</h1>
         {show === "prod" && (
           <>
-            <h2>Showroom de produtos</h2>
-            <div className={style.productList}>
-              {produtos.map((item) => (
-                <Card
-                  key={item.id}
-                  category={item.categoria}
-                  status={item.status}
-                  title={item.name}
-                  description={item.desc}
-                  value={item.value}
-                  imageUrl={item.image}
-                />
-              ))}
+          <h2>Showroom de produtos</h2>
+            <div className={style.cardShows}>
+            {produtos.map((item) => {
+              return(
+                <div className={style.cardDiv}>
+                  <Card 
+                    name={item.name} 
+                    desc={item.desc} 
+                    value={item.value} 
+                    image={item.image} 
+                    key={item.id} 
+                    status={item.status}/>
+                </div>
+              )
+             })}
             </div>
-          </>
+        </>
         )}
         {show === "api" && (
           <>
@@ -74,16 +80,19 @@ function App() {
                 onChange={(event) => setName(event.target.value)}
               />
             </div>
-            <div className={style.productList}>
+            <div className={style.cardShows}>
               {data.map((item) => (
-                <ApiCard
-                  key={item.id}
-                  name={item.name}
-                  species={item.species}
-                  gender={item.gender}
-                  status={item.status}
-                  image={item.image}
-                />
+                <div className={style.cardDiv}>
+                  <ApiCard
+                    key={item.id}
+                    name={item.name}
+                    species={item.species}
+                    type={item.type}
+                    gender={item.gender}
+                    status={item.status}
+                    image={item.image}
+                  />
+                </div>
               ))}
             </div>
           </>
@@ -92,8 +101,19 @@ function App() {
           <>
             <h2>Mapa</h2>
             <div className={style.mapContainer}>
-              <MapDisplay />
+              <MapDisplay/>
             </div>
+          </>
+        )}
+        {show === "graph" && (
+          <>
+            <h2>Gráficos</h2>
+            <LineChart width={1850} height={800} data={dataGraph} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+              <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+              <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+              <XAxis dataKey="name" />
+              <YAxis />
+            </LineChart>
           </>
         )}
       </div>

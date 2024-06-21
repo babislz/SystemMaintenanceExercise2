@@ -1,22 +1,18 @@
 import React from 'react';
-import styles from '../ApiCard.module.css';
+import style from './ApiCard.module.css'
 
-const ApiCard = ({ name, species, gender, status, image }) => {
-  const statusClass = status ? styles.statusGreen : styles.statusRed;
-
-  return (
-    <div className={styles.apiCard}>
+export const ApiCard = (props) => {
+  return(
       <div>
-        <h1>{name}</h1>
+          <h1>{props.name}</h1>
+          <h2>{props.status}</h2>
+          <h3>{props.species}</h3>
+          <h3>{props.type}</h3>
+          <h3>{props.gender}</h3>
+          <img src={props.image} alt={props.name}/>
       </div>
-      <div className={styles.info}>
-        <p>{species}</p>
-        <p>{gender}</p>
-        <div className={statusClass}></div>
-      </div>
-      <img src={image} alt={name} className={styles.image} />
-    </div>
-  );
-};
+  )
+}
 
-export default ApiCard;
+
+

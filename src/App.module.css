@@ -22,13 +22,6 @@
 }
 
 
-.productList {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 30px;  
-}
-
 .card {
   background-color: gray;
   border-radius: 20px;
@@ -66,4 +59,43 @@
 .mapContainer div {
   width: 100vw;
   height: 100vh;
+}
+
+.cardShows{
+  display: flex;
+  width: 100%;
+  padding-top: 27px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 50px;
+}
+
+.cardDiv {
+  flex-basis: calc(100% / 4 - 80px);
+  background-color: gray;
+}
+
+.cardDiv:hover{
+  transform:scale(1.07);
+  box-shadow: 0 9px 30px 0 #949494be;
+} 
+
+.cardDiv h2 {
+  font-family: helvetica;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.cardDiv p {
+    font-family: helvetica;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.cardDiv img {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
 }
