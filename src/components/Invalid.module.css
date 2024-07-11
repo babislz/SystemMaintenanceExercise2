@@ -1,0 +1,31 @@
+.background {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.377);
+    position: fixed;
+    z-index: 999;
+    color: white;
+}
+
+.modalzinho {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto auto auto;
+    background-color: rgb(177, 16, 16);
+    border-radius: 20px;
+    width: 30vw;
+    min-width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeX {
+    
+}

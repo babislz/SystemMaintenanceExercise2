@@ -6,6 +6,7 @@ import { api } from "./api/rmApi";
 import style from './App.module.css';
 import MapDisplay from './components/Map';
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import Invalid from './components/Invalid';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [name, setName] = useState("");
+  const [error, setError] = useState(false);
   const dataGraph = [
     { name: 'Page A', uv: 400, pv: 2400, amt: 2400 },
     { name: 'Page B', uv: 50, pv: 2400, amt: 2400 },
@@ -70,21 +72,17 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response;
-        if (name.trim() !== "") {
-          response = await api.get(`/character/?name=${name}`);
-        } else {
-          response = await api.get(`/character/?page=${page}`);
-        }
+        const response = await api.get(`/character/?page=${page}&name=${name}`);
         setData(response.data.results || []);
       } catch (error) {
-        console.error("Erro ao buscar dados:", error);
+        setError(true); 
+        // setData([]);
       }
     };
-
+  
     fetchData();
   }, [page, name]);
-
+  
   return (
     <>
       <div className={style.wrapBtns}>
@@ -115,6 +113,11 @@ function App() {
             </div>
           </>
         )}
+        {error && (
+          <>
+            <Invalid></Invalid>
+          </>
+        )}
         {show === "api" && (
           <>
             <h2>Rick and Morty API</h2>
@@ -134,9 +137,8 @@ function App() {
             </div>
             <div className={style.cardShows}>
               {data.map((item) => (
-                <div className={style.cardDiv}>
+                <div key={item.id} className={style.cardDiv}>
                   <ApiCard
-                    key={item.id}
                     name={item.name}
                     species={item.species}
                     type={item.type}
