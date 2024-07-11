@@ -1,14 +1,13 @@
 import React from "react";
 import style from './Invalid.module.css';
 
-const Invalid = () => {
+const Invalid = ({setError}) => {
   return (
     <div className={style.background}>
-        <div className={style.modalzinho}>
-            <h3>Input Inválido</h3>
-            <div className="closeX">
-                <span class="material-symbols-outlined">close</span>
-            </div>
+        <div className={style.modal}>
+          <h2>Nome Inválido</h2>
+          <p>Favor inserir um nome válido para que a busca possa ser realizada.</p>
+          <button onClick={() => {setError(false)}} className={style.btn} aria-label="Fechar modal">X</button>
         </div>
     </div>
   );

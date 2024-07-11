@@ -115,7 +115,7 @@ function App() {
         )}
         {error && (
           <>
-            <Invalid></Invalid>
+            <Invalid setError={setError}></Invalid>
           </>
         )}
         {show === "api" && (

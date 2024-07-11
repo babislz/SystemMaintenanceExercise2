@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const MapDisplay = () => {
@@ -8,7 +8,8 @@ const MapDisplay = () => {
 
   return (
     <MapContainer center={position} zoom={zoom} style={{
-        height: "100%",
+        width: "98.3vw",
+        height: "43.2%",
         backgroundColor: 'transparent' 
       }}>
       <TileLayer
