@@ -9,7 +9,7 @@ const MapDisplay = () => {
   return (
     <MapContainer center={position} zoom={zoom} style={{
         width: "98.3vw",
-        height: "43.2%",
+        height: "40%",
         backgroundColor: 'transparent' 
       }}>
       <TileLayer

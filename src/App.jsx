@@ -161,9 +161,9 @@ function App() {
         )}
         {show === "graph" && (
           <>
-            <div style={{ display: 'flex', flexDirection: "column", justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: "column", justifyContent: 'center', width: '100%', alignItems: 'center' }}>
               <h2>Gráficos</h2>
-              <LineChart width={1905} height={800} data={dataGraph} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+              <LineChart width={800} height={400} data={dataGraph} margin={{ top: 30, right: 20, bottom: 30, left: 0 }}>
                 <Line type="monotone" dataKey="uv" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                 <XAxis dataKey="name" />
@@ -171,10 +171,10 @@ function App() {
               </LineChart>
 
 
-              <div style={{ display: 'flex', flexDirection: "column"}}>
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: "center"}}>
+              <div style={{ display: 'flex', justifyContent: 'center'}}>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: "center", justifyContent: 'center'}}>
                   <h4>A demo of synchronized AreaCharts</h4>
-                  <ResponsiveContainer width="100%" height={200}>
+                  <ResponsiveContainer width={500} height={200}>
                     <AreaChart
                       width={500}
                       height={200}
@@ -200,7 +200,7 @@ function App() {
 
                   <p>Maybe some other content</p>
 
-                  <ResponsiveContainer width="100%" height={200}>
+                  <ResponsiveContainer width={500} height={200}>
                     <AreaChart
                       width={500}
                       height={200}

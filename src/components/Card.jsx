@@ -3,7 +3,7 @@ import style from './Card.module.css';
 
 export const Card = (props) => {
   return(
-      <div>
+      <div className={style.cardContent}>
           <h1>{props.name}</h1>
           <h2>{props.desc}</h2>
           <p>{props.value}</p>
